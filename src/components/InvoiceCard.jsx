@@ -7,7 +7,7 @@ const InvoiceCard = ({ invoice }) => {
     <Link to={`/invoice/${invoice.id}`}>
       <div className="bg-white dark:bg-[#1E2139] p-6 md:px-8 md:py-4 rounded-lg shadow-sm border border-transparent hover:border-[#7C5DFA] transition-all cursor-pointer group font-spartan">
         
-        {/* Desktop & Tablet Layout (Matches image_07d5a2.png) */}
+        {/* Desktop & Tablet Layout */}
         <div className="hidden md:grid grid-cols-[0.5fr_1fr_1fr_1fr_1fr_auto] items-center gap-4">
           <span className="text-[12px] font-bold dark:text-white uppercase">
             <span className="text-[#7E88C3]">#</span>{invoice.id}
@@ -34,7 +34,7 @@ const InvoiceCard = ({ invoice }) => {
           </svg>
         </div>
 
-        {/* Mobile Layout (Matches image_fb25fd.png) */}
+        {/* Mobile Layout*/}
         <div className="md:hidden grid grid-cols-2 gap-y-6">
           <div className="flex flex-col gap-2">
             <span className="text-[12px] font-bold dark:text-white uppercase">
