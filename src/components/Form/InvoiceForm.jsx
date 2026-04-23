@@ -71,7 +71,7 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
             {isEditing ? <>Edit <span className="text-[#888EB0]">#</span>{invoiceData.id}</> : 'New Invoice'}
           </h1>
 
-          <form className="space-y-12">
+          <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
             {/* BILL FROM SECTION */}
             <section className="space-y-6">
               <p className="text-[#7C5DFA] font-bold text-[12px] tracking-[-0.25px]">Bill From</p>
@@ -108,33 +108,17 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
                   <label className={getFieldStyles('clientName').label}>
                     Client's Name {errors.clientName && <span className="text-[10px]">{errors.clientName}</span>}
                   </label>
-                  <input 
-                    type="text" 
-                    className={getFieldStyles('clientName').input} 
-                    value={formData.clientName} 
-                    onChange={(e) => updateField('clientName', e.target.value)} 
-                  />
+                  <input type="text" className={getFieldStyles('clientName').input} value={formData.clientName} onChange={(e) => updateField('clientName', e.target.value)} />
                 </div>
                 <div>
                   <label className={getFieldStyles('clientEmail').label}>
                     Client's Email {errors.clientEmail && <span className="text-[10px]">{errors.clientEmail}</span>}
                   </label>
-                  <input 
-                    type="email" 
-                    placeholder="e.g. email@example.com" 
-                    className={getFieldStyles('clientEmail').input} 
-                    value={formData.clientEmail} 
-                    onChange={(e) => updateField('clientEmail', e.target.value)} 
-                  />
+                  <input type="email" placeholder="e.g. email@example.com" className={getFieldStyles('clientEmail').input} value={formData.clientEmail} onChange={(e) => updateField('clientEmail', e.target.value)} />
                 </div>
-                <div>
+                <div className="col-span-full">
                   <label className={getFieldStyles('clientStreet').label}>Street Address</label>
-                  <input 
-                    type="text" 
-                    className={getFieldStyles('clientStreet').input} 
-                    value={formData.clientAddress.street} 
-                    onChange={(e) => updateField('clientAddress.street', e.target.value)} 
-                  />
+                  <input type="text" className={getFieldStyles('clientStreet').input} value={formData.clientAddress.street} onChange={(e) => updateField('clientAddress.street', e.target.value)} />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                   <div className="col-span-1">
@@ -157,7 +141,7 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="label-style">Invoice Date</label>
-                <div className="w-full">
+                <div className="w-full relative">
                   <DatePicker
                     selected={new Date(formData.createdAt)}
                     onChange={(date) => updateField('createdAt', date.toISOString().split('T')[0])}
@@ -166,12 +150,16 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
                     customInput={
                       <button 
                         type="button"
-                        className={`${getFieldStyles('createdAt').input} w-full flex items-center justify-between text-left pr-4`}
+                        className={`${getFieldStyles('createdAt').input} w-full flex items-center justify-between text-left px-5`}
                       >
-                        <span className="font-bold">
-                          {new Date(formData.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        <span className="font-bold flex-1">
+                          {new Date(formData.createdAt).toLocaleDateString('en-GB', { 
+                            day: 'numeric', 
+                            month: 'short', 
+                            year: 'numeric' 
+                          })}
                         </span>
-                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" className="fill-[#7E88C3] flex-shrink-0">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" className="fill-[#7E88C3] flex-shrink-0 ml-4">
                           <path d="M14 2h-.667V.667A.667.667 0 0012.667 0a.667.667 0 00-.667.667V2H4V.667A.667.667 0 003.333 0a.666.667 0 00-.666.667V2H2C.897 2 0 2.897 0 4v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm.667 12c0 .367-.3.667-.667.667H2c-.367 0-.667-.3-.667-.667V7h13.334v7z" fillRule="nonzero"/>
                         </svg>
                       </button>
@@ -205,21 +193,13 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
 
               <div className="col-span-full">
                 <label className={getFieldStyles('description').label}>Project Description</label>
-                <input 
-                  type="text" 
-                  placeholder="e.g. Graphic Design Service" 
-                  className={getFieldStyles('description').input} 
-                  value={formData.description} 
-                  onChange={(e) => updateField('description', e.target.value)} 
-                />
+                <input type="text" placeholder="e.g. Graphic Design Service" className={getFieldStyles('description').input} value={formData.description} onChange={(e) => updateField('description', e.target.value)} />
               </div>
             </div>
 
             {/* ITEM LIST SECTION */}
             <section>
               <h3 className="text-[18px] text-[#777F98] font-bold mb-6 tracking-tight">Item List</h3>
-              
-              {/* Desktop Headers */}
               <div className="hidden md:grid grid-cols-[2.5fr_0.6fr_1fr_0.8fr_auto] gap-4 mb-4 px-2">
                 <span className="text-[#7E88C3] dark:text-[#DFE3FA] text-[12px]">Item Name</span>
                 <span className="text-[#7E88C3] dark:text-[#DFE3FA] text-[12px]">Qty.</span>
@@ -230,28 +210,13 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
 
               <div className="space-y-4">
                 {formData.items.map((item, index) => (
-                  <FormItem 
-                    key={index} 
-                    index={index} 
-                    item={item} 
-                    onUpdate={updateItem} 
-                    onDelete={removeItem} 
-                    errors={errors} 
-                  />
+                  <FormItem key={index} index={index} item={item} onUpdate={updateItem} onDelete={removeItem} errors={errors} />
                 ))}
               </div>
               
-              {errors.items && (
-                <p className="text-[#EC5757] text-[10px] font-bold mt-8">
-                  {errors.items}
-                </p>
-              )}
+              {errors.items && <p className="text-[#EC5757] text-[10px] font-bold mt-8">{errors.items}</p>}
               
-              <button 
-                type="button" 
-                onClick={addItem} 
-                className="w-full mt-4 bg-[#F9FAFE] dark:bg-[#252945] text-[#7E88C3] dark:text-[#DFE3FA] hover:bg-[#DFE3FA] py-4 rounded-full font-bold text-[12px] transition-colors"
-              >
+              <button type="button" onClick={addItem} className="w-full mt-4 bg-[#F9FAFE] dark:bg-[#252945] text-[#7E88C3] dark:text-[#DFE3FA] hover:bg-[#DFE3FA] py-4 rounded-full font-bold text-[12px] transition-colors">
                 + Add New Item
               </button>
             </section>
@@ -260,29 +225,17 @@ const InvoiceForm = ({ onClose, onSubmit, invoiceData }) => {
 
         {/* FOOTER ACTIONS */}
         <footer className="bg-white dark:bg-[#1E2139] md:dark:bg-[#141625] px-6 py-8 md:px-14 flex justify-between items-center shadow-[0_-10px_20px_rgba(0,0,0,0.05)] md:rounded-br-[20px] mt-auto">
-          <button 
-            type="button" 
-            onClick={onClose} 
-            className="bg-[#F9FAFE] dark:bg-[#252945] text-[#7E88C3] dark:text-[#DFE3FA] px-6 py-4 rounded-full font-bold text-[12px] hover:bg-[#DFE3FA] transition-colors"
-          >
+          <button type="button" onClick={onClose} className="bg-[#F9FAFE] dark:bg-[#252945] text-[#7E88C3] dark:text-[#DFE3FA] px-6 py-4 rounded-full font-bold text-[12px] hover:bg-[#DFE3FA] transition-colors">
             {isEditing ? 'Cancel' : 'Discard'}
           </button>
           
           <div className="flex gap-2">
             {!isEditing && (
-              <button 
-                type="button" 
-                onClick={() => handleAction('draft')} 
-                className="bg-[#373B53] text-[#888EB0] hover:bg-[#0C0E1B] px-4 md:px-6 py-4 rounded-full font-bold text-[12px] transition-colors"
-              >
+              <button type="button" onClick={() => handleAction('draft')} className="bg-[#373B53] text-[#888EB0] hover:bg-[#0C0E1B] px-4 md:px-6 py-4 rounded-full font-bold text-[12px] transition-colors">
                 Save as Draft
               </button>
             )}
-            <button 
-              type="button" 
-              onClick={() => handleAction('pending')} 
-              className="bg-[#7C5DFA] hover:bg-[#9277FF] text-white px-4 md:px-6 py-4 rounded-full font-bold text-[12px] transition-colors"
-            >
+            <button type="button" onClick={() => handleAction('pending')} className="bg-[#7C5DFA] hover:bg-[#9277FF] text-white px-4 md:px-6 py-4 rounded-full font-bold text-[12px] transition-colors">
               {isEditing ? 'Save Changes' : 'Save & Send'}
             </button>
           </div>
