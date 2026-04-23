@@ -6,7 +6,7 @@ A fully functional, responsive **Invoice Management Application** built using **
 
 ## 🚀 Live Links
 
-* 🔗 **Live Demo:** https://your-live-url.vercel.app
+* 🔗 **Live Demo:** [https://invoice-app-delta-neon.vercel.app/](https://invoice-app-delta-neon.vercel.app/)
 * 📂 **GitHub Repository:** https://github.com/TekNanya/invoice-app.git
 
 ---
