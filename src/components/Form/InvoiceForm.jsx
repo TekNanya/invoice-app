@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import { useInvoiceForm } from '../../hooks/useInvoiceForm';
 import FormItem from './FormItem';
 
-// Required for the date picker functionality
 import "react-datepicker/dist/react-datepicker.css";
 
 const defaultValues = {
