@@ -4,19 +4,6 @@ A fully functional, responsive **Invoice Management Application** built using **
 
 ---
 
-## 📸 Preview
-
-### 💻 Desktop
-![Desktop](./public/screenshots/desktop.png)
-
-### 📟 Tablet
-![Tablet](./public/screenshots/tablet.png)
-
-### 📱 Mobile
-![Mobile](./public/screenshots/mobile.png)
-
----
-
 ## 🚀 Live Links
 
 * 🔗 **Live Demo:** https://your-live-url.vercel.app
