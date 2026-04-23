@@ -7,7 +7,6 @@
     @apply bg-[#F8F8FB] dark:bg-[#141625] transition-colors duration-300 min-h-screen font-spartan text-[12px] antialiased;
   }
 
-  /* Remove arrows from number inputs */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -63,11 +62,7 @@
   }
 }
 
-/* ============================================================
-   REACT-DATEPICKER FIGMA OVERRIDES
-   ============================================================ */
 
-/* Wrapper Popper */
 .react-datepicker-popper {
   @apply !z-50 !pt-2;
 }
@@ -82,7 +77,7 @@
   background-color: #252945 !important;
 }
 
-/* Header (Month and Year) */
+
 .react-datepicker__header {
   @apply !bg-transparent !border-none !p-0 !w-full;
 }
@@ -91,12 +86,12 @@
   @apply !text-[#0C0E1B] dark:!text-[#DFE3FA] !font-bold !text-[12px] !mb-8 !tracking-tighter !capitalize;
 }
 
-/* Day Name Row (Su, Mo, Tu...) */
+
 .react-datepicker__day-names {
-  @apply !hidden; /* Figma usually hides these headers, but if you want them, change to !flex !justify-between */
+  @apply !hidden; 
 }
 
-/* Month Grid - Ensuring 7 column alignment */
+
 .react-datepicker__month {
   @apply !m-0 !flex !flex-col !gap-y-2;
 }
@@ -105,23 +100,23 @@
   @apply !flex !justify-between;
 }
 
-/* Individual Day */
+
 .react-datepicker__day {
   @apply !text-[#0C0E1B] dark:!text-[#DFE3FA] !font-bold !text-[12px] !w-8 !h-8 !leading-8 !m-0 transition-colors cursor-pointer hover:!text-[#7C5DFA];
 }
 
-/* Figma Selection: Purple text, NO background */
+
 .react-datepicker__day--selected, 
 .react-datepicker__day--keyboard-selected {
   @apply !bg-transparent !text-[#7C5DFA] !important;
 }
 
-/* Outside month days (Greyed out) */
+
 .react-datepicker__day--outside-month {
   @apply !text-[#DFE3FA] dark:!text-[#434761] !opacity-50 !important;
 }
 
-/* Navigation Arrows */
+
 .react-datepicker__navigation {
   @apply !top-6;
 }
@@ -134,12 +129,12 @@
   @apply !right-6;
 }
 
-/* Styling the arrow icons to look like chevrons */
+
 .react-datepicker__navigation-icon::before {
   @apply !border-[#7C5DFA] !border-t-2 !border-r-2 !w-[6px] !h-[6px] !top-1;
 }
 
-/* Dark Mode Nav Arrow Adjustment */
+
 .dark .react-datepicker__navigation-icon::before {
   @apply !border-[#7C5DFA];
 }
