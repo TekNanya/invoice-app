@@ -24,7 +24,7 @@ const InvoiceDetail = ({ invoices, onDelete, onUpdate }) => {
     );
   }
 
-  // Helper to check if the invoice is paid
+
   const isPaid = invoice.status === 'paid';
 
   const handleMarkAsPaid = () => {
@@ -67,7 +67,7 @@ const InvoiceDetail = ({ invoices, onDelete, onUpdate }) => {
           </div>
           
           <div className="hidden md:flex gap-2">
-            {/* Logic: Hide Edit if Paid */}
+          
             {!isPaid && (
               <button 
                 onClick={() => setIsFormOpen(true)} 
@@ -84,7 +84,7 @@ const InvoiceDetail = ({ invoices, onDelete, onUpdate }) => {
               Delete
             </button>
 
-            {/* Logic: Only show Mark as Paid if currently Pending */}
+         
             {!isPaid && (
               <button 
                 onClick={handleMarkAsPaid} 
