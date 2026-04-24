@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Filter = ({ activeFilters, onFilterChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const filterRef = useRef(null);
-  
-  // The statuses defined in the requirements
+
   const statuses = ['draft', 'pending', 'paid'];
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const Filter = ({ activeFilters, onFilterChange }) => {
           Filter <span className="hidden md:inline">by status</span>
         </span>
         
-        {/* ARROW ICON - SVG included directly so it never fails to load */}
+      
         <motion.svg 
           width="11" 
           height="7" 
@@ -59,7 +58,7 @@ const Filter = ({ activeFilters, onFilterChange }) => {
             className="absolute top-10 left-1/2 -translate-x-1/2 w-[192px] bg-white dark:bg-[#252945] shadow-xl rounded-lg p-6 z-20"
           >
             <div className="flex flex-col gap-4">
-              {/* Optional: "All" clear button logic */}
+             
               <label className="flex items-center gap-3 cursor-pointer group">
                 <div className="relative flex items-center justify-center">
                   <input
@@ -77,7 +76,7 @@ const Filter = ({ activeFilters, onFilterChange }) => {
                 </span>
               </label>
 
-              {/* Dynamic Statuses */}
+           
               {statuses.map((status) => (
                 <label key={status} className="flex items-center gap-3 cursor-pointer group">
                   <div className="relative flex items-center justify-center">
